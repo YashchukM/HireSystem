@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by Михайло on 07.07.2015.
+ * Created by Myhailo on 07.07.2015.
  */
 public class SolrServerFactory {
-    Map<String, SolrServer> urlToServer = new ConcurrentHashMap<String, SolrServer>();
-    static SolrServerFactory instance = new SolrServerFactory();
+    private Map<String, SolrServer> urlToServer = new ConcurrentHashMap<String, SolrServer>();
+    private static SolrServerFactory instance = new SolrServerFactory();
 
     public static SolrServerFactory getInstance() {
         return instance;
