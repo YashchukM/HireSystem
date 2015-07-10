@@ -23,20 +23,35 @@ public class SolrDaoImpl implements SolrDao {
         configureSolr(server);
     }
 
+    /**
+     * Put product into Solr. It will be indexed immediately.
+     * @param product product to put into Solr
+     */
     public void put(SolrProduct product) {
         put(createSingletonSet(product));
     }
 
+    /**
+     * Put collection of products into Solr. They will be indexed immediately.
+     * @param products products to put into Solr
+     */
     public void put(Collection<SolrProduct> products) {
         try {
             UpdateResponse response = server.addBeans(products);
             System.out.println("Added document to solr. Time taken: " +
                     response.getElapsedTime() + ". " + response.toString());
+            server.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Will be removed later. Is used for debug and training.
+     * @param start starting number of the result set
+     * @param rows number of records to return
+     * @return list of all products
+     */
     public List<SolrProduct> readAll(int start, int rows) {
         SolrQuery query = new SolrQuery();
 
@@ -52,6 +67,58 @@ public class SolrDaoImpl implements SolrDao {
             e.printStackTrace();
         }
         return products;
+    }
+
+    /**
+     * @param category category of product
+     * @param start starting number of the result set
+     * @param rows number of records to return
+     * @return list of products that belong to <code>category</code>
+     */
+    public List<SolrProduct> findByCategory(String category, int start, int rows) {
+        SolrQuery query = new SolrQuery();
+
+        query.setQuery("category:" + category);
+        query.setStart(start);
+        query.setRows(rows);
+
+        List<SolrProduct> products = null;
+        try {
+            QueryResponse response = server.query(query);
+            products = response.getBeans(SolrProduct.class);
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    /**
+     * @param owner name of person(full or partial)
+     * @param start starting number of the result set
+     * @param rows number of records to return
+     * @return list of products, that belong to <code>owner</code>
+     */
+    public List<SolrProduct> findByOwner(String owner, int start, int rows) {
+        SolrQuery query = new SolrQuery();
+
+        // Search by name with number of word moves allowed equal to number of words in name + 1
+        String movesAllowed = "~" + (wordsNumber(owner) + 1);
+        query.setQuery("owner:" + "\"" + owner + "\"" + movesAllowed);
+        query.setStart(start);
+        query.setRows(rows);
+
+        List<SolrProduct> products = null;
+        try {
+            QueryResponse response = server.query(query);
+            products = response.getBeans(SolrProduct.class);
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    private int wordsNumber(String name) {
+        return name.split(" ").length;
     }
 
     private void configureSolr(HttpSolrServer server) {

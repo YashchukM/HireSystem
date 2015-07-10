@@ -7,7 +7,7 @@ import org.apache.solr.client.solrj.beans.Field;
  */
 public class SolrProduct {
     @Field("id")
-    Integer id;
+    String id;
 
     @Field("name")
     String name;
@@ -20,18 +20,18 @@ public class SolrProduct {
 
     public SolrProduct() {}
 
-    public SolrProduct(Integer id, String name, String owner, String category) {
+    public SolrProduct(String id, String name, String owner, String category) {
         this.id = id;
         this.name = name;
         this.owner = owner;
         this.category = category;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
