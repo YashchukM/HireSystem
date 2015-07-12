@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    
+    <definition name="common" template="/WEB-INF/layout/classic.jsp">
+        <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    </definition>
+    
+    <definition name="index" extends="common">
+        <put-attribute name="title" value="Hire System" />
+        <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+        <put-attribute name="current" value="index" />
+    </definition>
+    
+    <definition name="users" extends="common">
+        <put-attribute name="title" value="Users" />
+        <put-attribute name="body" value="/WEB-INF/jsp/users.jsp" />
+        <put-attribute name="current" value="users" />
+    </definition>
+
+    <definition name="user-detail" extends="common">
+        <put-attribute name="title" value="User detail" />
+        <put-attribute name="body" value="/WEB-INF/jsp/user-detail.jsp" />
+        <put-attribute name="current" value="users" />
+    </definition>
+
+    <definition name="user-register" extends="common">
+        <put-attribute name="title" value="User registration" />
+        <put-attribute name="body" value="/WEB-INF/jsp/user-register.jsp" />
+        <put-attribute name="current" value="register" />
+    </definition>
+    
+    <definition name="login" extends="common">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+        <put-attribute name="current" value="login" />
+    </definition>
+
+<!--    <definition name="hardwares" extends="common">
+        <put-attribute name="title" value="Hardwares" />
+        <put-attribute name="body" value="/WEB-INF/jsp/hardwares.jsp" />
+        <put-attribute name="current" value="hardwares" />
+    </definition>
+
+    <definition name="hardware-detail" extends="common">
+        <put-attribute name="title" value="Hardware detail" />
+        <put-attribute name="body" value="/WEB-INF/jsp/hardware-detail.jsp" />
+        <put-attribute name="current" value="hardwares" />
+    </definition>
+
+    <definition name="computers" extends="common">
+        <put-attribute name="title" value="Computers" />
+        <put-attribute name="body" value="/WEB-INF/jsp/computers.jsp" />
+        <put-attribute name="current" value="computers" />
+    </definition>
+
+    <definition name="computer-detail" extends="common">
+        <put-attribute name="title" value="Computer detail" />
+        <put-attribute name="body" value="/WEB-INF/jsp/computer-detail.jsp" />
+        <put-attribute name="current" value="computers" />
+    </definition>-->
+
+</tiles-definitions>
