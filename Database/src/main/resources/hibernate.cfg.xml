@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name="connection.url">
+            jdbc:mysql://db4free.net:3306/hiresystem
+        </property>
+        <property name="connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+        <property name="connection.username">
+            hiresystem
+        </property>
+        <property name="connection.password">
+            hiresystem
+        </property>
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+        <!--<mapping class="entity.Address"/>
+        <mapping class="entity.Category"/>
+        <mapping class="entity.Hire"/>
+        <mapping class="entity.Item"/>
+        <mapping class="entity.ItemRating"/>
+        <mapping class="entity.ItemReview"/>
+        <mapping class="entity.Message"/>
+        <mapping class="entity.Rating"/>
+        <mapping class="entity.Review"/>
+        <mapping class="entity.ReviewRating"/>
+        <mapping class="entity.User"/>
+        <mapping class="entity.UserRating"/>
+        <mapping class="entity.UserReview"/>-->
+        <mapping package="entity"/>
+    </session-factory>
+</hibernate-configuration>

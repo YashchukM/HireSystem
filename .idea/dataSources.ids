@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - hiresystem@db4free.net" uuid="002255f0-eef8-474a-978e-6d94177f044d">
+    <database-info product="MySQL" version="5.6.25" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="hiresystem"/>
+    <table name="ADDRESS" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="COUNTRY" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="REGION" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CITY" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="STREET" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BUILDING" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="APARTMENT" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="USER_DETAILS_ibfk_2" table="USER_DETAILS" schema="" catalog="hiresystem" columns="ADDRESS_ID"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="CATEGORY" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="NAME" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="500" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IMAGE" sqlType="BLOB" precision="65535" scale="0" nullable="false" jdbcType="-4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="ITEM_ibfk_2" table="ITEM" schema="" catalog="hiresystem" columns="CATEGORY_ID"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="HIRE" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ITEM_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="OWNER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="HIRER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="START_DATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="END_DATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="HIRE_ibfk_1" columns="OWNER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="HIRE_ibfk_2" columns="HIRER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="HIRE_ibfk_3" columns="ITEM_ID" ref-table="ITEM" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="ITEM" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="NAME" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CATEGORY_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="PRICE" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="IS_HIRED" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="MAIN_IMAGE" sqlType="BLOB" precision="65535" scale="0" nullable="true" jdbcType="-4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="ITEM_ibfk_2" columns="CATEGORY_ID" ref-table="CATEGORY" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="HIRE_ibfk_3" table="HIRE" schema="" catalog="hiresystem" columns="ITEM_ID"/>
+      <exported-key name="ITEM_DETAILS_ibfk_1" table="ITEM_DETAILS" schema="" catalog="hiresystem" columns="ITEM_ID"/>
+      <exported-key name="ITEM_IMAGE_ibfk_1" table="ITEM_IMAGE" schema="" catalog="hiresystem" columns="ITEM_ID"/>
+      <exported-key name="RATING_ITEM_ibfk_2" table="RATING_ITEM" schema="" catalog="hiresystem" columns="ITEM_ID"/>
+      <exported-key name="REVIEW_ITEM_ibfk_2" table="REVIEW_ITEM" schema="" catalog="hiresystem" columns="ITEM_ID"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="ITEM_DETAILS" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ITEM_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="OWNER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="DESCRIPTION" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="MIN_HIRE_TIME" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="MAX_HIRE_TIME" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <primary-key name="PRIMARY" columns="ITEM_ID"/>
+      <foreign-key name="ITEM_DETAILS_ibfk_1" columns="ITEM_ID" ref-table="ITEM" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_ITEM_ID" unique="true" columns="ITEM_ID"/>
+    </table>
+    <table name="ITEM_IMAGE" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ITEM_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="IMAGE" sqlType="BLOB" precision="65535" scale="0" nullable="false" jdbcType="-4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="ITEM_IMAGE_ibfk_1" columns="ITEM_ID" ref-table="ITEM" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="MESSAGE" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="FROM_USER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TO_USER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CONTENT" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="SENT_DATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="MESSAGE_ibfk_1" columns="FROM_USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="MESSAGE_ibfk_2" columns="TO_USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="RATING" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="RATING_DATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="VALUE" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="AUTHOR_USER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="RATING_ibfk_1" columns="AUTHOR_USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="RATING_ITEM_ibfk_1" table="RATING_ITEM" schema="" catalog="hiresystem" columns="RATING_ID"/>
+      <exported-key name="RATING_REVIEW_ibfk_1" table="RATING_REVIEW" schema="" catalog="hiresystem" columns="RATING_ID"/>
+      <exported-key name="RATING_USER_ibfk_1" table="RATING_USER" schema="" catalog="hiresystem" columns="RATING_ID"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="RATING_ITEM" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="RATING_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ITEM_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="RATING_ITEM_ibfk_1" columns="RATING_ID" ref-table="RATING" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="RATING_ITEM_ibfk_2" columns="ITEM_ID" ref-table="ITEM" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="RATING_REVIEW" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="RATING_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="REVIEW_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="RATING_REVIEW_ibfk_1" columns="RATING_ID" ref-table="RATING" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="RATING_REVIEW_ibfk_2" columns="REVIEW_ID" ref-table="REVIEW" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="RATING_USER" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="RATING_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="USER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="RATING_USER_ibfk_1" columns="RATING_ID" ref-table="RATING" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="RATING_USER_ibfk_2" columns="USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+    </table>
+    <table name="REVIEW" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="AUTHOR_USER_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="REVIEW_DATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="REVIEW_TEXT" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="REVIEW_ibfk_1" columns="AUTHOR_USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="RATING_REVIEW_ibfk_2" table="RATING_REVIEW" schema="" catalog="hiresystem" columns="REVIEW_ID"/>
+      <exported-key name="REVIEW_ITEM_ibfk_1" table="REVIEW_ITEM" schema="" catalog="hiresystem" columns="REVIEW_ID"/>
+      <exported-key name="REVIEW_USER_ibfk_1" table="REVIEW_USER" schema="" catalog="hiresystem" columns="REVIEW_ID"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+      <index name="USER_ID" unique="false" columns="AUTHOR_USER_ID"/>
+    </table>
+    <table name="REVIEW_ITEM" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="REVIEW_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ITEM_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="REVIEW_ITEM_ibfk_1" columns="REVIEW_ID" ref-table="REVIEW" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="REVIEW_ITEM_ibfk_2" columns="ITEM_ID" ref-table="ITEM" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+      <index name="COMMENT_ID" unique="false" columns="REVIEW_ID"/>
+    </table>
+    <table name="REVIEW_USER" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="REVIEW_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="USER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="REVIEW_USER_ibfk_1" columns="REVIEW_ID" ref-table="REVIEW" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="REVIEW_USER_ibfk_2" columns="USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+      <index name="COMMENT_ID" unique="false" columns="REVIEW_ID"/>
+    </table>
+    <table name="USER" schema="" catalog="hiresystem" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="LOGIN" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="HIRE_ibfk_1" table="HIRE" schema="" catalog="hiresystem" columns="OWNER_ID"/>
+      <exported-key name="HIRE_ibfk_2" table="HIRE" schema="" catalog="hiresystem" columns="HIRER_ID"/>
+      <exported-key name="MESSAGE_ibfk_1" table="MESSAGE" schema="" catalog="hiresystem" columns="FROM_USER_ID"/>
+      <exported-key name="MESSAGE_ibfk_2" table="MESSAGE" schema="" catalog="hiresystem" columns="TO_USER_ID"/>
+      <exported-key name="RATING_ibfk_1" table="RATING" schema="" catalog="hiresystem" columns="AUTHOR_USER_ID"/>
+      <exported-key name="RATING_USER_ibfk_2" table="RATING_USER" schema="" catalog="hiresystem" columns="USER_ID"/>
+      <exported-key name="REVIEW_ibfk_1" table="REVIEW" schema="" catalog="hiresystem" columns="AUTHOR_USER_ID"/>
+      <exported-key name="REVIEW_USER_ibfk_2" table="REVIEW_USER" schema="" catalog="hiresystem" columns="USER_ID"/>
+      <exported-key name="USER_DETAILS_ibfk_1" table="USER_DETAILS" schema="" catalog="hiresystem" columns="USER_ID"/>
+      <index name="unique_ID" unique="true" columns="ID"/>
+      <index name="unique_LOGIN" unique="true" columns="LOGIN"/>
+    </table>
+    <table name="USER_DETAILS" schema="" catalog="hiresystem" type="TABLE">
+      <column name="USER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="NAME" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SURNAME" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="BIRTH_DATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="EMAIL" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PHONE" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IMAGE" sqlType="BLOB" precision="65535" scale="0" nullable="false" jdbcType="-4"/>
+      <column name="ADDRESS_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="USER_ID"/>
+      <foreign-key name="USER_DETAILS_ibfk_1" columns="USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="USER_DETAILS_ibfk_2" columns="ADDRESS_ID" ref-table="ADDRESS" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="unique_USER_ID" unique="true" columns="USER_ID"/>
+    </table>
+  </data-source>
+</component>

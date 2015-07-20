@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - hiresystem@db4free.net" uuid="002255f0-eef8-474a-978e-6d94177f044d">
+      <secret-storage>master_key</secret-storage>
+      <user-name>hiresystem</user-name>
+      <schema-pattern>hiresystem.*</schema-pattern>
+      <default-schemas>hiresystem.*</default-schemas>
+    </data-source>
+  </component>
+</project>
