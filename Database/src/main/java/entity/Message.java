@@ -23,7 +23,6 @@ public class Message {
 
     @Column(name = "CONTENT")
     @Lob
-    // fixme : possible error because of @Lob annotation
     protected String content;
 
     @Column(name = "SENT_DATE")

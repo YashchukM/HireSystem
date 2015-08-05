@@ -18,7 +18,6 @@ public class Review {
 
     @Column(name = "REVIEW_TEXT")
     @Lob
-    // fixme : possible error because of @Lob annotation
     protected String text;
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.dialect">
+        <!--<property name="hibernate.dialect">
             org.hibernate.dialect.MySQLDialect
         </property>
         <property name="connection.url">
@@ -19,22 +19,12 @@
         <property name="connection.password">
             hiresystem
         </property>
-
-        <!-- DB schema will be updated if needed -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
-        <!--<mapping class="entity.Address"/>
-        <mapping class="entity.Category"/>
-        <mapping class="entity.Hire"/>
-        <mapping class="entity.Item"/>
-        <mapping class="entity.ItemRating"/>
-        <mapping class="entity.ItemReview"/>
-        <mapping class="entity.Message"/>
-        <mapping class="entity.Rating"/>
-        <mapping class="entity.Review"/>
-        <mapping class="entity.ReviewRating"/>
-        <mapping class="entity.User"/>
-        <mapping class="entity.UserRating"/>
-        <mapping class="entity.UserReview"/>-->
+        &lt;!&ndash;<property name="hibernate.current_session_context_class">
+            thread
+        </property>&ndash;&gt;
+        <property name="hibernate.show_sql">
+            true
+        </property>-->
         <mapping package="entity"/>
     </session-factory>
 </hibernate-configuration>

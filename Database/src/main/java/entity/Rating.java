@@ -19,7 +19,7 @@ public class Rating {
     @Column(name = "VALUE")
     protected int value;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "AUTHOR_USER_ID")
     protected User author;
 

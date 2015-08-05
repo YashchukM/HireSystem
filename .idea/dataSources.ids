@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="MySQL - hiresystem@db4free.net" uuid="002255f0-eef8-474a-978e-6d94177f044d">
-    <database-info product="MySQL" version="5.6.25" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+    <database-info product="MySQL" version="5.6.26" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
@@ -33,8 +33,8 @@
       <column name="ITEM_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="OWNER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="HIRER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="START_DATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
-      <column name="END_DATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="START_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="END_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <primary-key name="PRIMARY" columns="ID"/>
       <foreign-key name="HIRE_ibfk_1" columns="OWNER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="HIRE_ibfk_2" columns="HIRER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
@@ -52,7 +52,6 @@
       <foreign-key name="ITEM_ibfk_2" columns="CATEGORY_ID" ref-table="CATEGORY" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="HIRE_ibfk_3" table="HIRE" schema="" catalog="hiresystem" columns="ITEM_ID"/>
       <exported-key name="ITEM_DETAILS_ibfk_1" table="ITEM_DETAILS" schema="" catalog="hiresystem" columns="ITEM_ID"/>
-      <exported-key name="ITEM_IMAGE_ibfk_1" table="ITEM_IMAGE" schema="" catalog="hiresystem" columns="ITEM_ID"/>
       <exported-key name="RATING_ITEM_ibfk_2" table="RATING_ITEM" schema="" catalog="hiresystem" columns="ITEM_ID"/>
       <exported-key name="REVIEW_ITEM_ibfk_2" table="REVIEW_ITEM" schema="" catalog="hiresystem" columns="ITEM_ID"/>
       <index name="unique_ID" unique="true" columns="ID"/>
@@ -65,6 +64,7 @@
       <column name="MAX_HIRE_TIME" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
       <primary-key name="PRIMARY" columns="ITEM_ID"/>
       <foreign-key name="ITEM_DETAILS_ibfk_1" columns="ITEM_ID" ref-table="ITEM" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="ITEM_IMAGE_ibfk_1" table="ITEM_IMAGE" schema="" catalog="hiresystem" columns="ITEM_ID"/>
       <index name="unique_ITEM_ID" unique="true" columns="ITEM_ID"/>
     </table>
     <table name="ITEM_IMAGE" schema="" catalog="hiresystem" type="TABLE">
@@ -72,7 +72,7 @@
       <column name="ITEM_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="IMAGE" sqlType="BLOB" precision="65535" scale="0" nullable="false" jdbcType="-4"/>
       <primary-key name="PRIMARY" columns="ID"/>
-      <foreign-key name="ITEM_IMAGE_ibfk_1" columns="ITEM_ID" ref-table="ITEM" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="ITEM_IMAGE_ibfk_1" columns="ITEM_ID" ref-table="ITEM_DETAILS" ref-schema="" ref-catalog="hiresystem" ref-columns="ITEM_ID" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="unique_ID" unique="true" columns="ID"/>
     </table>
     <table name="MESSAGE" schema="" catalog="hiresystem" type="TABLE">
@@ -80,7 +80,7 @@
       <column name="FROM_USER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="TO_USER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="CONTENT" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
-      <column name="SENT_DATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="SENT_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <primary-key name="PRIMARY" columns="ID"/>
       <foreign-key name="MESSAGE_ibfk_1" columns="FROM_USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="MESSAGE_ibfk_2" columns="TO_USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
@@ -182,7 +182,7 @@
       <column name="BIRTH_DATE" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
       <column name="EMAIL" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="PHONE" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
-      <column name="IMAGE" sqlType="BLOB" precision="65535" scale="0" nullable="false" jdbcType="-4"/>
+      <column name="IMAGE" sqlType="LONGBLOB" precision="2147483647" scale="0" nullable="true" jdbcType="-4"/>
       <column name="ADDRESS_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="USER_ID"/>
       <foreign-key name="USER_DETAILS_ibfk_1" columns="USER_ID" ref-table="USER" ref-schema="" ref-catalog="hiresystem" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>

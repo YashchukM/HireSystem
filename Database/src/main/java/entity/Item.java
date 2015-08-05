@@ -6,6 +6,7 @@ import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Set;
 
 /**
  * Created by Andrii on 19/07/2015.

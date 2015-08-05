@@ -6,7 +6,10 @@ import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Andrii on 20/07/2015.
@@ -18,6 +21,7 @@ public class ItemDetails {
     parameters = @Parameter(name = "property", value = "item"))
     @Id
     @GeneratedValue(generator = "generator")
+    @Column(name = "ITEM_ID")
     protected int id;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -31,7 +35,6 @@ public class ItemDetails {
 
     @Column(name = "DESCRIPTION")
     @Lob
-    // fixme : possible error because of @Lob annotation
     protected String description;
 
     @Column(name = "MIN_HIRE_TIME")
@@ -40,17 +43,24 @@ public class ItemDetails {
     @Column(name = "MAX_HIRE_TIME")
     protected float maxHireTime;
 
+    // todo : EAGER VS LAZY Fetch
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "itemDetails")
+    //@Cascade(CascadeType.ALL)
+    @OrderBy("id")
+    protected List<ItemImage> images;
+
     public ItemDetails() {
     }
 
     public ItemDetails(Item item, User owner, String description,
-                       float minHireTime, float maxHireTime) {
+                       float minHireTime, float maxHireTime, List<ItemImage> images) {
 
         this.item = item;
         this.owner = owner;
         this.description = description;
         this.minHireTime = minHireTime;
         this.maxHireTime = maxHireTime;
+        this.images = images;
     }
 
     public int getId() {
@@ -99,5 +109,13 @@ public class ItemDetails {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public List<ItemImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ItemImage> images) {
+        this.images = images;
     }
 }

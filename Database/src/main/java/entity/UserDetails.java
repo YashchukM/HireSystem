@@ -19,6 +19,7 @@ public class UserDetails {
     parameters = @Parameter(name = "property", value = "user"))
     @Id
     @GeneratedValue(generator = "generator")
+    @Column(name = "USER_ID")
     protected int id;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -45,7 +46,8 @@ public class UserDetails {
     @Lob
     protected byte[] image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ADDRESS_ID")
     protected Address address;
 
     public UserDetails() {

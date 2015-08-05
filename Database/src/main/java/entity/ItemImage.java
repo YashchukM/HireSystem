@@ -18,14 +18,14 @@ public class ItemImage {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ITEM_ID")
-    protected Item item;
+    protected ItemDetails itemDetails;
 
     public ItemImage() {
     }
 
-    public ItemImage(byte[] image, Item item) {
+    public ItemImage(byte[] image, ItemDetails itemDetails) {
         this.image = image;
-        this.item = item;
+        this.itemDetails = itemDetails;
     }
 
     public int getId() {
@@ -44,11 +44,11 @@ public class ItemImage {
         this.image = image;
     }
 
-    public Item getItem() {
-        return item;
+    public ItemDetails getItemDetails() {
+        return itemDetails;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItemDetails(ItemDetails itemDetails) {
+        this.itemDetails= itemDetails;
     }
 }

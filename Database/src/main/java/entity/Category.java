@@ -28,11 +28,6 @@ public class Category {
     @Lob
     protected byte[] image;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-    @OrderColumn(name = "ID")
-    @Cascade(CascadeType.ALL)
-    protected Set<Item> items;
-
     public Category() {
     }
 
@@ -72,13 +67,5 @@ public class Category {
 
     public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    public Set<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Item> items) {
-        this.items = items;
     }
 }
