@@ -9,13 +9,13 @@ public class SolrProduct {
     @Field("id")
     String id;
 
-    @Field("name")
+    @Field("name_t")
     String name;
 
-    @Field("owner")
+    @Field("owner_t")
     String owner;
 
-    @Field("category")
+    @Field("category_t")
     String category;
 
     public SolrProduct() {}

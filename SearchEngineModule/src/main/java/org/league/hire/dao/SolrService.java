@@ -3,6 +3,8 @@ package org.league.hire.dao;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.impl.XMLResponseParser;
+import org.apache.solr.client.solrj.request.RequestWriter;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.league.hire.pojo.SolrProduct;
@@ -20,9 +22,11 @@ import java.util.List;
 @Service
 @Transactional
 public class SolrService implements SolrDao {
-    private HttpSolrServer server = null;
 
-    public SolrService(String solrUrl) {
+    private HttpSolrServer server = null;
+    private String solrUrl = "http://1.svr.solrhq.com/s/5be45bfd5d2916e9a151f1b93a01a814/";
+
+    public SolrService() {
         server = (HttpSolrServer) SolrServerFactory.getInstance().createServer(solrUrl);
         configureSolr(server);
     }
@@ -82,9 +86,11 @@ public class SolrService implements SolrDao {
     public List<SolrProduct> findByCategory(String category, int start, int rows) {
         SolrQuery query = new SolrQuery();
 
-        query.setQuery("category:" + category);
+        query.setQuery("category_t:" + category);
         query.setStart(start);
         query.setRows(rows);
+
+        System.out.println(query);
 
         List<SolrProduct> products = null;
         try {
@@ -107,7 +113,7 @@ public class SolrService implements SolrDao {
 
         // Search by name with number of word moves allowed equal to number of words in name + 1
         String movesAllowed = "~" + (wordsNumber(owner) + 1);
-        query.setQuery("owner:" + "\"" + owner + "\"" + movesAllowed);
+        query.setQuery("owner_t:" + "\"" + owner + "\"" + movesAllowed);
         query.setStart(start);
         query.setRows(rows);
 
@@ -128,11 +134,12 @@ public class SolrService implements SolrDao {
     private void configureSolr(HttpSolrServer server) {
         server.setMaxRetries(1);
         server.setConnectionTimeout(5000);
-        server.setSoTimeout(1000);
+        server.setSoTimeout(2000);
         server.setDefaultMaxConnectionsPerHost(100);
         server.setMaxTotalConnections(100);
         server.setFollowRedirects(false);
         server.setAllowCompression(false);
+        server.setParser(new XMLResponseParser());
     }
 
     private <U> Collection<U> createSingletonSet(U dao) {
