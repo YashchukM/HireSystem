@@ -24,10 +24,10 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Database" />
-        <module name="SearchEngineModule" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Database" target="1.5" />
       <module name="HireSystem" target="1.5" />
       <module name="SearchEngineModule" target="1.5" />
     </bytecodeTargetLevel>
