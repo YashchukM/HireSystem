@@ -19,7 +19,7 @@
             <c:forEach items="${users}" var="user">
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <a href="<spring:url value="/users/${user.id}.html" />">${user.name}</a>
+                        <a href="<spring:url value="/users/${user.id}.html" />">${user.login}</a>
                     </td>
                 </tr>
             </c:forEach>

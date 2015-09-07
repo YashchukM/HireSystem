@@ -23,12 +23,18 @@
             
         <password-encoder hash="bcrypt" />
             
-            <jdbc-user-service data-source-ref="dataSource" 
+<!--            <jdbc-user-service data-source-ref="dataSource" 
             authorities-by-username-query="select user_details.name, role.name from user_details
                                             join user_details_role on user_details.id = user_details_role.users_id
                                             join role on user_details_role.roles_id = role.id
                                             where user_details.name = ?"
-            users-by-username-query="select name,password,enabled from user_details where name = ?" />
+            users-by-username-query="select name,password,enabled from user_details where name = ?" />-->
+            <jdbc-user-service data-source-ref="dataSource" 
+            authorities-by-username-query="select USER.LOGIN, role.name from USER
+                                            join USER_role on USER.id = USER_role.users_id
+                                            join role on USER_role.roles_id = role.id
+                                            where USER.LOGIN = ?"
+            users-by-username-query="select LOGIN,PASSWORD,enabled from USER where LOGIN = ?" />
         
         </authentication-provider>
     </authentication-manager>

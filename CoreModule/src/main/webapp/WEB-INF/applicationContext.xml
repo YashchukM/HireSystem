@@ -5,6 +5,7 @@
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
                            http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
@@ -17,7 +18,7 @@
         
     <jdbc:embedded-database type="HSQL" id="dataSource" />
         
-    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
+<!--    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
         <property name="packagesToScan" value="org.league.hire.coremodule.entity" />
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaProperties">
@@ -37,8 +38,44 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
     
-    <jpa:repositories base-package="org.league.hire.coremodule.repository" entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager" />
+    <jpa:repositories base-package="org.league.hire.coremodule.repository" entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager" />-->
 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <context:component-scan base-package="dao"/>
+    <context:component-scan base-package="manager"/>
+
+    <!--Database beans-->
+
+<!--    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close"
+          p:driverClassName="com.mysql.jdbc.Driver"
+          p:url="jdbc:mysql://db4free.net:3306/hiresystem"
+          p:username="hiresystem"
+          p:password="hiresystem">
+    </bean>-->
+    
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <value>entity</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
     <import resource="security.xml" />
 
 </beans>

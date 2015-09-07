@@ -9,5 +9,5 @@
 <%@include file="../layout/taglib.jsp"%>
 
 <div style="padding:20px">
-    <h1>${user.name}</h1>
+    <h1>${user.login}</h1>
 </div>

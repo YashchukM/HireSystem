@@ -15,7 +15,7 @@
 
     <form:form commandName="user" cssClass="">
         <div class="mdl-textfield mdl-js-textfield textfield-demo">
-            <form:input path="name" cssClass="mdl-textfield__input" id="sample1" />
+            <form:input path="login" cssClass="mdl-textfield__input" id="sample1" />
             <label class="mdl-textfield__label" for="sample1">Name:</label>
         </div>
         <br>

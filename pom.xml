@@ -10,7 +10,8 @@
     <modules>
         <module>SearchEngineModule</module>
     <module>CoreModule</module>
-  </modules>
+        <module>Database</module>
+    </modules>
 
 
 </project>

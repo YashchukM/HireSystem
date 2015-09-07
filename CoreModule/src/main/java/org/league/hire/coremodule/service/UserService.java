@@ -5,13 +5,17 @@
  */
 package org.league.hire.coremodule.service;
 
+import entity.Role;
+import entity.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
-import org.league.hire.coremodule.entity.Role;
-import org.league.hire.coremodule.entity.User;
-import org.league.hire.coremodule.repository.RoleRepository;
-import org.league.hire.coremodule.repository.UserRepository;
+import manager.RoleManager;
+import manager.UserManager;
+//import org.league.hire.coremodule.entity.Role;
+//import org.league.hire.coremodule.entity.User;
+//import org.league.hire.coremodule.repository.RoleRepository;
+//import org.league.hire.coremodule.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,18 +28,24 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+//    private UserRepository userRepository;
+//
+//    @Autowired
+//    private RoleRepository roleRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
+    private UserManager userManager;
+    
+    @Autowired
+    private RoleManager roleManager;
+    
     public List<User> findAll() {
-        return userRepository.findAll();
+        return userManager.query().findInitialized(0, 1000);
     }
 
     public User findOne(int id) {
-        return userRepository.findOne(id);
+        return userManager.getById(id);
     }
 
     public void save(User user) {
@@ -44,10 +54,10 @@ public class UserService {
         user.setPassword(encoder.encode(user.getPassword()));
 
         List<Role> roles = new ArrayList<Role>();
-        roles.add(roleRepository.findByName("ROLE_USER"));
+        roles.add(roleManager.query().hasName("ROLE_USER").find(0, 1).get(0));
         user.setRoles(roles);
 
-        userRepository.save(user);
+        userManager.save(user);
     }
 
 }

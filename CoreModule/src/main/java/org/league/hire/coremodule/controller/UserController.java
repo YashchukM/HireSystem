@@ -5,7 +5,8 @@
  */
 package org.league.hire.coremodule.controller;
 
-import org.league.hire.coremodule.entity.User;
+//import org.league.hire.coremodule.entity.User;
+import entity.User;
 import org.league.hire.coremodule.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
