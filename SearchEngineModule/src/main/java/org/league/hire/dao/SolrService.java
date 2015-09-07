@@ -9,6 +9,7 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.league.hire.pojo.SolrProduct;
 import org.league.hire.utility.SolrServerFactory;
+import org.league.hire.utility.SolrUtility;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,9 +25,14 @@ import java.util.List;
 public class SolrService implements SolrDao {
 
     private HttpSolrServer server = null;
-    private String solrUrl = "http://1.svr.solrhq.com/s/5be45bfd5d2916e9a151f1b93a01a814/";
+    private String solrUrl;
 
     public SolrService() {
+        try {
+            solrUrl = SolrUtility.getSolrUrl("http://api.solrhq.com/txt/10e243d3c8a5bd5cfda7face16e76b83/start-session/HireSystem/");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         server = (HttpSolrServer) SolrServerFactory.getInstance().createServer(solrUrl);
         configureSolr(server);
     }
