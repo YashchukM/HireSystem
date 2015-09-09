@@ -1,5 +1,8 @@
 package org.league.hire.dao;
 
+import entity.Item;
+import manager.ItemManager;
+import manager.impl.ItemManagerImpl;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
@@ -10,9 +13,11 @@ import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.league.hire.pojo.SolrProduct;
 import org.league.hire.utility.SolrServerFactory;
 import org.league.hire.utility.SolrUtility;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -26,6 +31,9 @@ public class SolrService implements SolrDao {
 
     private HttpSolrServer server = null;
     private String solrUrl;
+
+    @Autowired
+    ItemManager itemManager;
 
     public SolrService() {
         try {
@@ -41,15 +49,15 @@ public class SolrService implements SolrDao {
      * Put product into Solr. It will be indexed immediately.
      * @param product product to put into Solr
      */
-    public void put(SolrProduct product) {
-        put(createSingletonSet(product));
+    private void putSolr(SolrProduct product) {
+        putSolr(createSingletonSet(product));
     }
 
     /**
      * Put collection of products into Solr. They will be indexed immediately.
      * @param products products to put into Solr
      */
-    public void put(Collection<SolrProduct> products) {
+    private void putSolr(Collection<SolrProduct> products) {
         try {
             UpdateResponse response = server.addBeans(products);
             System.out.println("Added document to solr. Time taken: " +
@@ -60,13 +68,21 @@ public class SolrService implements SolrDao {
         }
     }
 
+    public void put(int id, String name, String owner, String category) {
+        SolrProduct solrProduct = new SolrProduct(Integer.toString(id),
+                name,
+                owner,
+                category);
+        putSolr(solrProduct);
+    }
+
     /**
      * Will be removed later. Is used for debug and training.
      * @param start starting number of the result set
      * @param rows number of records to return
      * @return list of all products
      */
-    public List<SolrProduct> readAll(int start, int rows) {
+    private List<SolrProduct> readAllSolr(int start, int rows) {
         SolrQuery query = new SolrQuery();
 
         query.setQuery("*:*");
@@ -83,13 +99,18 @@ public class SolrService implements SolrDao {
         return products;
     }
 
+    public List<Item> readAll(int start, int rows) {
+        List<SolrProduct> productsSolr = readAllSolr(start, rows);
+        return convertSolrToItem(productsSolr);
+    }
+
     /**
      * @param category category of product
      * @param start starting number of the result set
      * @param rows number of records to return
      * @return list of products that belong to <code>category</code>
      */
-    public List<SolrProduct> findByCategory(String category, int start, int rows) {
+    private List<SolrProduct> findByCategorySolr(String category, int start, int rows) {
         SolrQuery query = new SolrQuery();
 
         query.setQuery("category_t:" + category);
@@ -108,13 +129,18 @@ public class SolrService implements SolrDao {
         return products;
     }
 
+    public List<Item> findByCategory(String category, int start, int rows) {
+        List<SolrProduct> productsSolr = findByCategorySolr(category, start, rows);
+        return convertSolrToItem(productsSolr);
+    }
+
     /**
      * @param owner name of person(full or partial)
      * @param start starting number of the result set
      * @param rows number of records to return
      * @return list of products, that belong to <code>owner</code>
      */
-    public List<SolrProduct> findByOwner(String owner, int start, int rows) {
+    private List<SolrProduct> findByOwnerSolr(String owner, int start, int rows) {
         SolrQuery query = new SolrQuery();
 
         // Search by name with number of word moves allowed equal to number of words in name + 1
@@ -131,6 +157,11 @@ public class SolrService implements SolrDao {
             e.printStackTrace();
         }
         return products;
+    }
+
+    public List<Item> findByOwner(String owner, int start, int rows) {
+        List<SolrProduct> productsSolr = findByOwnerSolr(owner, start, rows);
+        return convertSolrToItem(productsSolr);
     }
 
     private int wordsNumber(String name) {
@@ -153,5 +184,15 @@ public class SolrService implements SolrDao {
             return Collections.emptySet();
         }
         return Collections.singleton(dao);
+    }
+
+    private List<Item> convertSolrToItem(List<SolrProduct> productsSolr) {
+        List<Item> products = new ArrayList<Item>(productsSolr.size());
+        for (SolrProduct productSolr : productsSolr) {
+            Item product = itemManager.getById(Integer.parseInt(productSolr.getId()));
+            products.add(product);
+        }
+
+        return products;
     }
 }

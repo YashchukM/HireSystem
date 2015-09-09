@@ -1,5 +1,6 @@
 package org.league.hire.dao;
 
+import entity.Item;
 import org.league.hire.pojo.SolrProduct;
 
 import java.util.Collection;
@@ -9,11 +10,10 @@ import java.util.List;
  * Created by Myhailo on 07.07.2015.
  */
 public interface SolrDao {
-    public void put(SolrProduct product);
-    public void put(Collection<SolrProduct> products);
+    public void put(int id, String name, String owner, String category);
 
-    public List<SolrProduct> readAll(int start, int rows);
+    public List<Item> readAll(int start, int rows);
 
-    public List<SolrProduct> findByCategory(String category, int start, int row);
-    public List<SolrProduct> findByOwner(String owner, int start, int row);
+    public List<Item> findByCategory(String category, int start, int rows);
+    public List<Item> findByOwner(String owner, int start, int rows);
 }

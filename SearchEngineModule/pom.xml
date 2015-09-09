@@ -16,6 +16,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>${parent.groupId}</groupId>
+            <artifactId>Database</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
