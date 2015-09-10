@@ -12,6 +12,7 @@
     <modules>
         <module>SearchEngineModule</module>
         <module>Database</module>
+        <module>AccountController</module>
     </modules>
 
     <properties>
