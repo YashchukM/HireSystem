@@ -1,63 +1,42 @@
-package rent.controllers;
+package org.league.hire.coremodule.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.security.Principal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import entity.*;
+import manager.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import rent.entity.Address;
-import rent.entity.Category;
-import rent.entity.Item;
-import rent.entity.ItemDetails;
-import rent.entity.User;
-import rent.entity.UserDetails;
-import rent.manager.AddressManager;
-import rent.manager.CategoryManager;
-import rent.manager.ItemDetailsManager;
-import rent.manager.ItemManager;
-import rent.manager.UserDetailsManager;
-import rent.manager.UserManager;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.security.Principal;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
 
 @Controller
 public class AjaxJSONController {
 	@Autowired
-	UserManager userManager;
-	@Autowired
-	UserDetailsManager userDetManager;
-	@Autowired
-	AddressManager addressManager;
+    UserManager userManager;
 
 	@Autowired
-	ItemManager itemManager;
+    UserDetailsManager userDetManager;
+
 	@Autowired
-	ItemDetailsManager itemDetManager;
+    AddressManager addressManager;
+
+	@Autowired
+    ItemManager itemManager;
+
+	@Autowired
+    ItemDetailsManager itemDetManager;
+
 	@Autowired
 	CategoryManager catgManager;
 
