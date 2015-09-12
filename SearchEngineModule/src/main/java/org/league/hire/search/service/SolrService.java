@@ -1,21 +1,18 @@
-package org.league.hire.dao;
+package org.league.hire.search.service;
 
 import entity.Item;
-import manager.ItemManager;
-import manager.impl.ItemManagerImpl;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.impl.XMLResponseParser;
-import org.apache.solr.client.solrj.request.RequestWriter;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
-import org.league.hire.pojo.SolrProduct;
-import org.league.hire.utility.SolrServerFactory;
-import org.league.hire.utility.SolrUtility;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.league.hire.search.utility.SolrUtility;
+import org.league.hire.search.pojo.SolrProduct;
+import org.league.hire.search.utility.SolrServerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,15 +24,16 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class SolrService implements SolrDao {
+public class SolrService {
 
     private HttpSolrServer server = null;
     private String solrUrl;
 
-    @Autowired
-    ItemManager itemManager;
+//    @Autowired
+//    ItemManager itemManager;
 
-    public SolrService() {
+    @PostConstruct
+    public void init() {
         try {
             solrUrl = SolrUtility.getSolrUrl("http://api.solrhq.com/txt/10e243d3c8a5bd5cfda7face16e76b83/start-session/HireSystem/");
         } catch (Exception e) {
@@ -188,10 +186,10 @@ public class SolrService implements SolrDao {
 
     private List<Item> convertSolrToItem(List<SolrProduct> productsSolr) {
         List<Item> products = new ArrayList<Item>(productsSolr.size());
-        for (SolrProduct productSolr : productsSolr) {
-            Item product = itemManager.getById(Integer.parseInt(productSolr.getId()));
-            products.add(product);
-        }
+//        for (SolrProduct productSolr : productsSolr) {
+//            Item product = itemManager.getById(Integer.parseInt(productSolr.getId()));
+//            products.add(product);
+//        }
 
         return products;
     }

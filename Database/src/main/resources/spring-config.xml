@@ -25,7 +25,7 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close"
           p:driverClassName="com.mysql.jdbc.Driver"
-          p:url="jdbc:mysql://db4free.net:3306/hiresystem"
+          p:url="jdbc:mysql://db4free.net:3307/hiresystem"
           p:username="hiresystem"
           p:password="hiresystem">
     </bean>

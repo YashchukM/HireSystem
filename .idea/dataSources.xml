@@ -15,5 +15,12 @@
       </driver-properties>
       <libraries />
     </data-source>
+    <data-source source="LOCAL" name="HSQLDB -" uuid="8764e67d-ab3b-4681-974e-1b041e2e413d">
+      <driver-ref>hsqldb.embedded</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
+      <jdbc-url>jdbc:hsqldb:file:/</jdbc-url>
+      <libraries />
+    </data-source>
   </component>
 </project>

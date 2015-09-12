@@ -25,6 +25,11 @@ public class ItemReviewDAOImpl extends GenericDAOImpl<ItemReview> implements Ite
     }
 
     @Override
+    public Criterion hasReviewId(int id) {
+        return Restrictions.eq("review.id", id);
+    }
+    
+    @Override
     protected void initialize(ItemReview obj) {
         super.initialize(obj);
         Hibernate.initialize(obj.getItem());

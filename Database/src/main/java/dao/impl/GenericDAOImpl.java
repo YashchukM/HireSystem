@@ -1,6 +1,7 @@
 package dao.impl;
 
 import dao.GenericDAO;
+import entity.User;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;

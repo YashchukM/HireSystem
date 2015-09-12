@@ -31,7 +31,7 @@ public class UserManagerImpl extends GenericManagerImpl<User>
 
         public UserQueryImpl(GenericDAO<User> dao) {
             super(dao);
-            criteria.createAlias(criteria.getAlias() + ".userDetails", "userDetails", JoinType.INNER_JOIN);
+            //criteria.createAlias(criteria.getAlias() + ".userDetails", "userDetails", JoinType.INNER_JOIN);
         }
 
         @Override

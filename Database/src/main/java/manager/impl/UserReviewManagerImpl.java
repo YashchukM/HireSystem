@@ -46,5 +46,11 @@ public class UserReviewManagerImpl extends GenericManagerImpl<UserReview>
             addCriterion(((UserReviewDAO) dao).hasAuthor(author));
             return this;
         }
+
+        @Override
+        public UserReviewQuery hasReviewId(int id) {
+            addCriterion(((UserReviewDAO) dao).hasReviewId(id));
+            return this;
+        }
     }
 }

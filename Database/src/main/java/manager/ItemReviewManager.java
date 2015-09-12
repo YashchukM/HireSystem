@@ -14,5 +14,6 @@ public interface ItemReviewManager extends GenericManager<ItemReview> {
     public interface ItemReviewQuery extends GenericQuery<ItemReview> {
         public ItemReviewQuery hasItem(Item item);
         public ItemReviewQuery hasAuthor(User author);
+        public ItemReviewQuery hasReviewId(int id);
     }
 }

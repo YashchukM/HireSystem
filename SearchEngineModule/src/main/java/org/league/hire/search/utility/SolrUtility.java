@@ -1,4 +1,4 @@
-package org.league.hire.utility;
+package org.league.hire.search.utility;
 
 
 import java.io.BufferedReader;

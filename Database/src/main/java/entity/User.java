@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,6 +29,12 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     @Cascade(CascadeType.ALL)
     protected UserDetails userDetails;
+
+    protected boolean enabled;
+    
+    @ManyToMany
+    @JoinTable
+    private List<Role> roles;
 
     public User() {
     }
@@ -68,5 +75,21 @@ public class User {
 
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
+    }
+
+    public boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

@@ -24,6 +24,11 @@ public class UserReviewDAOImpl extends GenericDAOImpl<UserReview> implements Use
     }
 
     @Override
+    public Criterion hasReviewId(int id) {
+        return Restrictions.eq("review.id", id);
+    }
+    
+    @Override
     protected void initialize(UserReview obj) {
         super.initialize(obj);
         Hibernate.initialize(obj.getUser());
