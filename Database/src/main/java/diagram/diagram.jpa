@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings status="GENERATED" jaxb-support="false" id="_14416501900621" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <jpa:entity class="Address" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_14416501904084">
+        <jpa:table name="ADDRESS"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_14416501904185">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="country" attribute-type="java.lang.String" visibile="true" id="_14416501904246">
+                <jpa:column name="COUNTRY"/>
+            </jpa:basic>
+            <jpa:basic name="region" attribute-type="java.lang.String" visibile="true" id="_14416501904437">
+                <jpa:column name="REGION"/>
+            </jpa:basic>
+            <jpa:basic name="city" attribute-type="java.lang.String" visibile="true" id="_14416501904438">
+                <jpa:column name="CITY"/>
+            </jpa:basic>
+            <jpa:basic name="street" attribute-type="java.lang.String" visibile="true" id="_14416501904439">
+                <jpa:column name="STREET"/>
+            </jpa:basic>
+            <jpa:basic name="building" attribute-type="java.lang.String" visibile="true" id="_144165019044310">
+                <jpa:column name="BUILDING"/>
+            </jpa:basic>
+            <jpa:basic name="apartment" attribute-type="java.lang.String" visibile="true" id="_144165019044311">
+                <jpa:column name="APARTMENT"/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Category" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019059012">
+        <jpa:table name="CATEGORY"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019059013">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="name" attribute-type="java.lang.String" visibile="true" id="_144165019059014">
+                <jpa:column name="NAME"/>
+            </jpa:basic>
+            <jpa:basic name="description" attribute-type="java.lang.String" visibile="true" id="_144165019059015">
+                <jpa:column name="DESCRIPTION"/>
+            </jpa:basic>
+            <jpa:basic name="image" attribute-type="byte[]" visibile="true" id="_144165019059116">
+                <jpa:column name="IMAGE"/>
+                <jpa:lob/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Hire" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019063017">
+        <jpa:table name="HIRE"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019063018">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="startDate" attribute-type="java.util.Date" visibile="true" id="_144165019063222">
+                <jpa:column name="START_DATE"/>
+            </jpa:basic>
+            <jpa:basic name="endDate" attribute-type="java.util.Date" visibile="true" id="_144165019063223">
+                <jpa:column name="END_DATE"/>
+            </jpa:basic>
+            <jpa:many-to-one name="item" target-entity="Item" fetch="EAGER" primaryKey="false" connected-entity-id="_144165019111724" visibile="true" id="_144165019063019"/>
+            <jpa:many-to-one name="owner" target-entity="User" fetch="EAGER" primaryKey="false" connected-entity-id="_144165019366975" visibile="true" id="_144165019063220"/>
+            <jpa:many-to-one name="hirer" target-entity="User" fetch="EAGER" primaryKey="false" connected-entity-id="_144165019366975" visibile="true" id="_144165019063221"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Item" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019111724">
+        <jpa:table name="ITEM"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019111725">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="name" attribute-type="java.lang.String" visibile="true" id="_144165019123126">
+                <jpa:column name="NAME"/>
+            </jpa:basic>
+            <jpa:basic name="price" attribute-type="float" visibile="true" id="_144165019123228">
+                <jpa:column name="PRICE"/>
+            </jpa:basic>
+            <jpa:basic name="mainImage" attribute-type="byte[]" visibile="true" id="_144165019123430">
+                <jpa:column name="MAIN_IMAGE"/>
+            </jpa:basic>
+            <jpa:many-to-one name="category" target-entity="Category" fetch="LAZY" primaryKey="false" connected-entity-id="_144165019059012" visibile="true" id="_144165019123227"/>
+            <jpa:one-to-one name="itemDetails" target-entity="ItemDetails" fetch="LAZY" mapped-by="item" connected-entity-id="_144165019197031" connected-attribute-id="_144165019200437" visibile="true" id="_144165019123329">
+                <annotation>@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.ALL})</annotation>
+            </jpa:one-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ItemDetails" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019197031">
+        <jpa:table name="ITEM_DETAILS"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019197032">
+                <annotation>@org.hibernate.annotations.GenericGenerator(name="generator", strategy="foreign", parameters={@org.hibernate.annotations.Parameter(name="property", value="item")})</annotation>
+                <jpa:column name="ITEM_ID"/>
+                <jpa:generated-value generator="generator"/>
+                <jpa:sequence-generator name="ITEM_ID"/>
+            </jpa:id>
+            <jpa:basic name="description" attribute-type="java.lang.String" visibile="true" id="_144165019200434">
+                <jpa:column name="DESCRIPTION"/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:basic name="minHireTime" attribute-type="float" visibile="true" id="_144165019200435">
+                <jpa:column name="MIN_HIRE_TIME"/>
+            </jpa:basic>
+            <jpa:basic name="maxHireTime" attribute-type="float" visibile="true" id="_144165019200436">
+                <jpa:column name="MAX_HIRE_TIME"/>
+            </jpa:basic>
+            <jpa:many-to-one name="owner" target-entity="User" fetch="EAGER" primaryKey="false" connected-entity-id="_144165019366975" visibile="true" id="_144165019200433"/>
+            <jpa:one-to-many name="images" target-entity="ItemImage" fetch="LAZY" mapped-by="itemDetails" collection-type="java.util.List" connected-entity-id="_144165019240539" connected-attribute-id="_144165019240642" visibile="true" id="_144165019200638"/>
+            <jpa:one-to-one name="item" target-entity="Item" fetch="LAZY" connected-entity-id="_144165019111724" connected-attribute-id="_144165019123329" visibile="true" id="_144165019200437"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ItemImage" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019240539">
+        <jpa:table name="ITEM_IMAGE"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019240640">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="image" attribute-type="byte[]" visibile="true" id="_144165019240641">
+                <jpa:column name="IMAGE"/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:many-to-one name="itemDetails" target-entity="ItemDetails" fetch="LAZY" primaryKey="false" connected-entity-id="_144165019197031" connected-attribute-id="_144165019200638" visibile="true" id="_144165019240642"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ItemRating" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019259143">
+        <jpa:table name="RATING_ITEM"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019259144">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:many-to-one name="item" target-entity="Item" fetch="LAZY" primaryKey="false" connected-entity-id="_144165019111724" visibile="true" id="_144165019259246"/>
+            <jpa:one-to-one name="rating" target-entity="Rating" fetch="EAGER" connected-entity-id="_144165019307457" visibile="true" id="_144165019259145">
+                <annotation>@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.ALL})</annotation>
+            </jpa:one-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ItemReview" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019280847">
+        <jpa:table name="REVIEW_ITEM"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019280848">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:many-to-one name="item" target-entity="Item" fetch="LAZY" primaryKey="false" connected-entity-id="_144165019111724" visibile="true" id="_144165019286050"/>
+            <jpa:one-to-one name="review" target-entity="Review" fetch="EAGER" connected-entity-id="_144165019325462" visibile="true" id="_144165019283549">
+                <annotation>@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.ALL})</annotation>
+            </jpa:one-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Message" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019295851">
+        <jpa:table name="MESSAGE"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019295852">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="content" attribute-type="java.lang.String" visibile="true" id="_144165019295855">
+                <jpa:column name="CONTENT"/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:basic name="sentDate" attribute-type="java.util.Date" visibile="true" id="_144165019295856">
+                <jpa:column name="SENT_DATE"/>
+            </jpa:basic>
+            <jpa:many-to-one name="fromUser" target-entity="User" fetch="EAGER" primaryKey="false" connected-entity-id="_144165019366975" visibile="true" id="_144165019295853"/>
+            <jpa:many-to-one name="toUser" target-entity="User" fetch="EAGER" primaryKey="false" connected-entity-id="_144165019366975" visibile="true" id="_144165019295854"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Rating" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019307457">
+        <jpa:table name="RATING"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019307558">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="date" attribute-type="java.util.Date" visibile="true" id="_144165019307559">
+                <jpa:column name="RATING_DATE"/>
+            </jpa:basic>
+            <jpa:basic name="value" attribute-type="int" visibile="true" id="_144165019307560">
+                <jpa:column name="VALUE"/>
+            </jpa:basic>
+            <jpa:many-to-one name="author" target-entity="User" fetch="EAGER" primaryKey="false" connected-entity-id="_144165019366975" visibile="true" id="_144165019307561"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Review" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019325462">
+        <jpa:table name="REVIEW"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019325563">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="date" attribute-type="java.util.Date" visibile="true" id="_144165019325564">
+                <jpa:column name="REVIEW_DATE"/>
+            </jpa:basic>
+            <jpa:basic name="text" attribute-type="java.lang.String" visibile="true" id="_144165019325565">
+                <jpa:column name="REVIEW_TEXT"/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:many-to-one name="author" target-entity="User" fetch="EAGER" primaryKey="false" connected-entity-id="_144165019366975" visibile="true" id="_144165019325566"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="ReviewRating" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019343567">
+        <jpa:table name="RATING_REVIEW"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019343568">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:many-to-one name="review" target-entity="Review" fetch="LAZY" primaryKey="false" connected-entity-id="_144165019325462" visibile="true" id="_144165019343670"/>
+            <jpa:one-to-one name="rating" target-entity="Rating" fetch="EAGER" connected-entity-id="_144165019307457" visibile="true" id="_144165019343569">
+                <annotation>@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.ALL})</annotation>
+            </jpa:one-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="Role" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019355271">
+        <jpa:table name="role"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019355272">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="name" attribute-type="java.lang.String" visibile="true" id="_144165019355273"/>
+            <jpa:many-to-many name="users" target-entity="User" mapped-by="roles" collection-type="java.util.List" connected-entity-id="_144165019366975" connected-attribute-id="_144165019367081" visibile="true" id="_144165019355374"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="User" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019366975">
+        <jpa:table name="USER"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019366976">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:basic name="login" attribute-type="java.lang.String" visibile="true" id="_144165019366977">
+                <jpa:column name="LOGIN" unique="true"/>
+            </jpa:basic>
+            <jpa:basic name="password" attribute-type="java.lang.String" visibile="true" id="_144165019367078">
+                <jpa:column name="PASSWORD"/>
+            </jpa:basic>
+            <jpa:basic name="enabled" attribute-type="boolean" visibile="true" id="_144165019367080"/>
+            <jpa:one-to-one name="userDetails" target-entity="UserDetails" fetch="LAZY" mapped-by="user" connected-entity-id="_144165019405682" connected-attribute-id="_144165019405684" visibile="true" id="_144165019367079">
+                <annotation>@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.ALL})</annotation>
+            </jpa:one-to-one>
+            <jpa:many-to-many name="roles" target-entity="Role" collection-type="java.util.List" connected-entity-id="_144165019355271" connected-attribute-id="_144165019355374" visibile="true" id="_144165019367081">
+                <jpa:join-table/>
+            </jpa:many-to-many>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="UserDetails" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019405682">
+        <jpa:table name="USER_DETAILS"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019405683">
+                <annotation>@org.hibernate.annotations.GenericGenerator(name="generator", strategy="foreign", parameters={@org.hibernate.annotations.Parameter(name="property", value="user")})</annotation>
+                <jpa:column name="USER_ID"/>
+                <jpa:generated-value generator="generator"/>
+                <jpa:sequence-generator name="USER_ID"/>
+            </jpa:id>
+            <jpa:basic name="name" attribute-type="java.lang.String" visibile="true" id="_144165019405685">
+                <jpa:column name="NAME"/>
+            </jpa:basic>
+            <jpa:basic name="surname" attribute-type="java.lang.String" visibile="true" id="_144165019405786">
+                <jpa:column name="SURNAME"/>
+            </jpa:basic>
+            <jpa:basic name="birthDate" attribute-type="java.util.Date" visibile="true" id="_144165019405787">
+                <jpa:column name="BIRTH_DATE"/>
+            </jpa:basic>
+            <jpa:basic name="email" attribute-type="java.lang.String" visibile="true" id="_144165019405788">
+                <jpa:column name="EMAIL"/>
+            </jpa:basic>
+            <jpa:basic name="phone" attribute-type="java.lang.String" visibile="true" id="_144165019405789">
+                <jpa:column name="PHONE"/>
+            </jpa:basic>
+            <jpa:basic name="image" attribute-type="byte[]" visibile="true" id="_144165019405790">
+                <jpa:column name="IMAGE"/>
+                <jpa:lob/>
+            </jpa:basic>
+            <jpa:many-to-one name="address" target-entity="Address" fetch="EAGER" primaryKey="false" connected-entity-id="_14416501904084" visibile="true" id="_144165019405791"/>
+            <jpa:one-to-one name="user" target-entity="User" fetch="LAZY" connected-entity-id="_144165019366975" connected-attribute-id="_144165019367079" visibile="true" id="_144165019405684">
+                <annotation>@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.ALL})</annotation>
+            </jpa:one-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="UserRating" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019420892">
+        <jpa:table name="RATING_USER"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019420893">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:many-to-one name="user" target-entity="User" fetch="LAZY" primaryKey="false" connected-entity-id="_144165019366975" visibile="true" id="_144165019420895"/>
+            <jpa:one-to-one name="rating" target-entity="Rating" fetch="EAGER" connected-entity-id="_144165019307457" visibile="true" id="_144165019420894">
+                <annotation>@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.ALL})</annotation>
+            </jpa:one-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity class="UserReview" compositePrimaryKeyType="NONE" jaxb-root-element="false" static-metamodel="false" visibile="true" minimized="false" id="_144165019433596">
+        <jpa:table name="REVIEW_USER"/>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="int" visibile="true" id="_144165019433597">
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:many-to-one name="user" target-entity="User" fetch="LAZY" primaryKey="false" connected-entity-id="_144165019366975" visibile="true" id="_144165019433599"/>
+            <jpa:one-to-one name="review" target-entity="Review" fetch="EAGER" connected-entity-id="_144165019325462" visibile="true" id="_144165019433598">
+                <annotation>@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.ALL})</annotation>
+            </jpa:one-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:diagram id="_14416501900642">
+        <plane elementRef="_14416501900621" id="_14416501900663_p"/>
+    </jpa:diagram>
+</jpa:entity-mappings>

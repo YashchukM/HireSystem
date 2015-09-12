@@ -25,6 +25,18 @@
         <put-attribute name="body" value="/WEB-INF/jsp/user-detail.jsp" />
         <put-attribute name="current" value="users" />
     </definition>
+    
+    <definition name="items" extends="common">
+        <put-attribute name="title" value="Items" />
+        <put-attribute name="body" value="/WEB-INF/jsp/items.jsp" />
+        <put-attribute name="current" value="items" />
+    </definition>
+
+    <definition name="item-detail" extends="common">
+        <put-attribute name="title" value="Item detail" />
+        <put-attribute name="body" value="/WEB-INF/jsp/item-detail.jsp" />
+        <put-attribute name="current" value="items" />
+    </definition>
 
     <definition name="user-register" extends="common">
         <put-attribute name="title" value="User registration" />
@@ -37,29 +49,5 @@
         <put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
         <put-attribute name="current" value="login" />
     </definition>
-
-<!--    <definition name="hardwares" extends="common">
-        <put-attribute name="title" value="Hardwares" />
-        <put-attribute name="body" value="/WEB-INF/jsp/hardwares.jsp" />
-        <put-attribute name="current" value="hardwares" />
-    </definition>
-
-    <definition name="hardware-detail" extends="common">
-        <put-attribute name="title" value="Hardware detail" />
-        <put-attribute name="body" value="/WEB-INF/jsp/hardware-detail.jsp" />
-        <put-attribute name="current" value="hardwares" />
-    </definition>
-
-    <definition name="computers" extends="common">
-        <put-attribute name="title" value="Computers" />
-        <put-attribute name="body" value="/WEB-INF/jsp/computers.jsp" />
-        <put-attribute name="current" value="computers" />
-    </definition>
-
-    <definition name="computer-detail" extends="common">
-        <put-attribute name="title" value="Computer detail" />
-        <put-attribute name="body" value="/WEB-INF/jsp/computer-detail.jsp" />
-        <put-attribute name="current" value="computers" />
-    </definition>-->
 
 </tiles-definitions>

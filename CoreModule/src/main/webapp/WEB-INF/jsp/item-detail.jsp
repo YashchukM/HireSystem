@@ -1,6 +1,6 @@
 <%-- 
-    Document   : user-detail.jsp
-    Created on : Jul 12, 2015, 11:37:29 AM
+    Document   : item-detail
+    Created on : Sep 12, 2015, 1:16:21 PM
     Author     : alexander-ilkun
 --%>
 
@@ -14,9 +14,10 @@
         <div><h4>Action successful!</h4></div>
     </c:if>
 
-    <h5>Login: ${user.login}</h5>
-    <h5>Rating: ${userRating}</h5>
-    <h5>Vote:<a href="<spring:url value="/users/${user.id}/voteUser.html" />">vote</a></h5>
+    <h5>Name: ${item.name}</h5>
+    ${item.itemDetails.owner.login}
+    <h5>Rating: ${itemRating}</h5>
+    <h5>Vote:<a href="<spring:url value="/items/${item.id}/voteItem.html" />">vote</a></h5>
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
             <tr>
@@ -28,30 +29,30 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${userReviews}" var="userReview" varStatus="status">
+            <c:forEach items="${itemReviews}" var="itemReview" varStatus="status">
                 <tr>
                     <td class="mdl-data-table__cell--non-numeric">
-                        ${userReview.review.text}
+                        ${itemReview.review.text}
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <a href="<spring:url value="/users/${userReview.review.author.id}.html" />">${userReview.review.author.login}</a>
+                        <a href="<spring:url value="/users/${itemReview.review.author.id}.html" />">${itemReview.review.author.login}</a>
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        ${userReview.review.date}
+                        ${itemReview.review.date}
                     </td>
                     <td>
-                        ${userReviewsRatings[status.index]}
+                        ${itemReviewsRatings[status.index]}
                     </td>
                     <td class="mdl-data-table__cell--non-numeric">
             <center>
-                <a href="<spring:url value="/users/${user.id}/voteReview/${userReview.review.id}.html" />">vote</a>
+                <a href="<spring:url value="/items/${item.id}/voteReview/${itemReview.review.id}.html" />">vote</a>
             </center>
             </td>
             </tr>
         </c:forEach>
         <tbody>
     </table>
-    <form:form commandName="userReview" cssClass="">
+    <form:form commandName="itemReview" cssClass="">
         <div class="mdl-textfield mdl-js-textfield">
             <form:textarea path="review.text" cssClass="mdl-textfield__input" rows="3" id="sample1" ></form:textarea>
                 <label class="mdl-textfield__label" for="sample1">Review:</label>

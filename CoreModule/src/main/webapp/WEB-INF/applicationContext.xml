@@ -18,28 +18,6 @@
         
     <jdbc:embedded-database type="HSQL" id="dataSource" />
         
-<!--    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
-        <property name="packagesToScan" value="org.league.hire.coremodule.entity" />
-        <property name="dataSource" ref="dataSource"/>
-        <property name="jpaProperties">
-            <props>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
-            </props>
-        </property>
-        <property name="persistenceProvider">
-            <bean class="org.hibernate.jpa.HibernatePersistenceProvider" />
-        </property>
-    </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager" />
-    
-    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-    
-    <jpa:repositories base-package="org.league.hire.coremodule.repository" entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager" />-->
-
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <context:component-scan base-package="dao"/>
@@ -65,8 +43,10 @@
         </property>
         <property name="hibernateProperties">
             <props>
+<!--                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
                 <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <!--BE CAREFUL WITH THE NEXT TAG IF YOU USE DEPLOYMENT DATABASE-->
                 <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
         </property>

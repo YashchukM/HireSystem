@@ -13,5 +13,6 @@ public interface UserReviewManager extends GenericManager<UserReview> {
     public interface UserReviewQuery extends GenericQuery<UserReview> {
         public UserReviewQuery hasUser(User user);
         public UserReviewQuery hasAuthor(User author);
+        public UserReviewQuery hasReviewId(int id);
     }
 }

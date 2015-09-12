@@ -10,4 +10,5 @@ import org.hibernate.criterion.Criterion;
 public interface UserReviewDAO extends GenericDAO<UserReview> {
     public Criterion hasUser(User user);
     public Criterion hasAuthor(User author);
+    public Criterion hasReviewId(int id);
 }

@@ -5,6 +5,9 @@
  */
 package org.league.hire.coremodule.service;
 
+import entity.Item;
+import entity.ItemDetails;
+import entity.Review;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,8 +15,12 @@ import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import entity.Role;
 import entity.User;
+import entity.UserReview;
+import manager.ItemDetailsManager;
+import manager.ItemManager;
 import manager.RoleManager;
 import manager.UserManager;
+import manager.UserReviewManager;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 //import org.league.hire.coremodule.repository.RoleRepository;
@@ -42,6 +49,15 @@ public class InitDbService {
     @Autowired
     private UserManager userManager;
     
+    @Autowired
+    private UserReviewManager userReviewManager;
+    
+    @Autowired
+    private ItemDetailsManager itemDetailsManager;
+    
+    @Autowired
+    private ItemManager itemManager;
+    
     @PostConstruct
     public void init() {
         Role roleUser = new Role();
@@ -57,11 +73,34 @@ public class InitDbService {
         userAdmin.setLogin("admin");
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         userAdmin.setPassword(encoder.encode("admin"));
-        List<Role> roles = new ArrayList<Role>();
-        roles.add(roleAdmin);
-        roles.add(roleUser);
-        userAdmin.setRoles(roles);
+        List<Role> adminRoles = new ArrayList<Role>();
+        adminRoles.add(roleAdmin);
+        adminRoles.add(roleUser);
+        userAdmin.setRoles(adminRoles);
         userManager.save(userAdmin);
+    
+        User user = new User();
+        user.setEnabled(true);
+        user.setLogin("user");
+        user.setPassword(encoder.encode("user"));
+        List<Role> userRoles = new ArrayList<Role>();
+        userRoles.add(roleUser);
+        user.setRoles(userRoles);
+        userManager.save(user);
+    
+        Review adminReview = new Review();
+        adminReview.setAuthor(userAdmin);
+        adminReview.setText("He is a good guy.");
+        adminReview.setDate(new Date());
+        userReviewManager.save(new UserReview(adminReview, user));
+    
+        ItemDetails adminItemDetails = new ItemDetails();
+        Item adminItem = new Item();
+        adminItem.setName("adminItem");
+        adminItemDetails.setItem(adminItem);
+        adminItemDetails.setOwner(userAdmin);
+        itemDetailsManager.save(adminItemDetails);
+        //itemManager.save(adminItem);
     }
 
 }

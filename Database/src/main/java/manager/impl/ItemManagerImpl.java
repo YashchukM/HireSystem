@@ -32,9 +32,9 @@ public class ItemManagerImpl extends GenericManagerImpl<Item>
 
         public ItemQueryImpl(GenericDAO<Item> dao) {
             super(dao);
-            criteria.createAlias(criteria.getAlias() + ".itemDetails", "itemDetails", JoinType.INNER_JOIN);
-            criteria.createAlias(criteria.getAlias() + ".category", "category", JoinType.INNER_JOIN);
-            criteria.createAlias("itemDetails.owner", "owner", JoinType.INNER_JOIN);
+//            criteria.createAlias(criteria.getAlias() + ".itemDetails", "itemDetails", JoinType.INNER_JOIN);
+//            criteria.createAlias(criteria.getAlias() + ".category", "category", JoinType.INNER_JOIN);
+//            criteria.createAlias("itemDetails.owner", "owner", JoinType.INNER_JOIN);
         }
 
         @Override

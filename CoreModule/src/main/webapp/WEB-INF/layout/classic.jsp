@@ -44,6 +44,7 @@
                             <a class="mdl-navigation__link is-active" href="<spring:url value="/" />">Home</a>
                             <security:authorize access="hasRole('ROLE_ADMIN')">
                                 <a class="mdl-navigation__link" href="<spring:url value="/users.html" />">Users</a>
+                                <a class="mdl-navigation__link" href="<spring:url value="/items.html" />">Items</a>
                             </security:authorize>
                             <security:authorize access="! isAuthenticated()">
                                 <a class="mdl-navigation__link" href="<spring:url value="/login.html" />">Login</a>
