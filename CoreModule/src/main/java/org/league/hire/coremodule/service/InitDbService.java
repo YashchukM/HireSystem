@@ -34,13 +34,6 @@ import org.springframework.stereotype.Service;
 @Transactional
 @Service
 public class InitDbService {
-
-//    @Autowired
-//    private RoleRepository roleRepository;
-//
-//    @Autowired
-//    private UserRepository userRepository;
-
     @Autowired
     private RoleManager roleManager;
     
@@ -98,7 +91,6 @@ public class InitDbService {
         adminItemDetails.setItem(adminItem);
         adminItemDetails.setOwner(userAdmin);
         itemDetailsManager.save(adminItemDetails);
-        //itemManager.save(adminItem);
     }
 
 }

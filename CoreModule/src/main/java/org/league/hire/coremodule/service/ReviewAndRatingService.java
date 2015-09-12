@@ -63,7 +63,6 @@ public class ReviewAndRatingService {
     }
     
     public void saveUserReview(UserReview userReview) {
-        //reviewRatingManager.save(new ReviewRating(new Rating(), userReview.getReview()));
         userReviewManager.save(userReview);
     }
 

@@ -5,13 +5,8 @@
  */
 package org.league.hire.coremodule.controller;
 
-//import org.league.hire.coremodule.entity.User;
 import entity.User;
 import entity.UserReview;
-import java.security.Principal;
-import java.util.Date;
-import java.util.List;
-
 import org.league.hire.coremodule.service.ReviewAndRatingService;
 import org.league.hire.coremodule.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.security.Principal;
+import java.util.Date;
+import java.util.List;
 
 /**
  *

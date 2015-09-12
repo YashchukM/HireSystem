@@ -1,6 +1,7 @@
 package org.league.hire.search.service;
 
 import entity.Item;
+import manager.ItemManager;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
@@ -10,6 +11,7 @@ import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.league.hire.search.utility.SolrUtility;
 import org.league.hire.search.pojo.SolrProduct;
 import org.league.hire.search.utility.SolrServerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -29,8 +31,8 @@ public class SolrService {
     private HttpSolrServer server = null;
     private String solrUrl;
 
-//    @Autowired
-//    ItemManager itemManager;
+    @Autowired
+    ItemManager itemManager;
 
     @PostConstruct
     public void init() {
@@ -186,10 +188,10 @@ public class SolrService {
 
     private List<Item> convertSolrToItem(List<SolrProduct> productsSolr) {
         List<Item> products = new ArrayList<Item>(productsSolr.size());
-//        for (SolrProduct productSolr : productsSolr) {
-//            Item product = itemManager.getById(Integer.parseInt(productSolr.getId()));
-//            products.add(product);
-//        }
+        for (SolrProduct productSolr : productsSolr) {
+            Item product = itemManager.getById(Integer.parseInt(productSolr.getId()));
+            products.add(product);
+        }
 
         return products;
     }
