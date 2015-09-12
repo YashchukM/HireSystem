@@ -13,6 +13,7 @@
         <module>SearchEngineModule</module>
         <module>Database</module>
         <module>CoreModule</module>
+        <module>AccountController</module>
     </modules>
 
     <properties>
@@ -28,6 +29,8 @@
 
         <apache.tiles>3.0.3</apache.tiles>
         <spring.security.version>4.0.1.RELEASE</spring.security.version>
+
+        <mysql-version>5.1.36</mysql-version>
     </properties>
 
     <build>

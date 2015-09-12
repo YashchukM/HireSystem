@@ -9,6 +9,7 @@
     
 </head>
 
+
 <body>
 	<form id="addItemForm" method="post" enctype="multipart/form-data">
 	    <input type="text" id="name2" name="name2" />

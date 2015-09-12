@@ -9,7 +9,7 @@
 
     <artifactId>CoreModule</artifactId>
 
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>CoreModule</name>
     
@@ -28,9 +28,15 @@
         </dependency>
 
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>AccountController</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.36</version>
+            <version>${mysql-version}</version>
         </dependency>
 
         <dependency>
