@@ -18,6 +18,8 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <%--<script type="text/javascript" src="resources/scripts/scripts.js"></script>--%>
         <title><tiles:getAsString name="title" /></title>
     </head>
     <body>
@@ -41,8 +43,9 @@
                             </div>
                         </div>
                         <nav class="mdl-navigation">
-                            <a class="mdl-navigation__link is-active" href="<spring:url value="/" />">Home</a>
-                            <security:authorize access="hasRole('ROLE_ADMIN')">
+                            <a class="mdl-navigation__link is-active" href="<spring:url value="/" />">Index</a>
+                            <security:authorize access="isAuthenticated()">
+                                <a class="mdl-navigation__link" href="<spring:url value="/home.html" />">Home</a>
                                 <a class="mdl-navigation__link" href="<spring:url value="/users.html" />">Users</a>
                                 <a class="mdl-navigation__link" href="<spring:url value="/items.html" />">Items</a>
                             </security:authorize>

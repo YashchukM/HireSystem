@@ -1,5 +1,5 @@
 function changeUsersInfoOld() {
-	var methodURL = "/RentServiceSpring/changeUsersInfoRequest";
+	var methodURL = "/CoreModule/changeUsersInfoRequest";
 	$.ajax({
 		type : "POST",
 		url : methodURL,
@@ -25,7 +25,7 @@ function changeUsersInfo() {
 	usersInfo.append("file", avatar.files[0]);
 
 	$.ajax({
-		url : "/RentServiceSpring/changeUsersInfoRequest",
+		url : "/CoreModule/changeUsersInfoRequest",
 		data : usersInfo,
 		dataType : 'text',
 		processData : false,
@@ -38,7 +38,7 @@ function changeUsersInfo() {
 }
 
 function changeItemsInfo() {
-	var methodURL = "/RentServiceSpring/changeItemsInfoRequest";
+	var methodURL = "/CoreModule/changeItemsInfoRequest";
 	$.ajax({
 		type : "POST",
 		url : methodURL,
@@ -54,7 +54,7 @@ function changeItemsInfo() {
 }
 
 function sendImage() {
-	var methodURL = "/RentServiceSpring/image";
+	var methodURL = "/CoreModule/image";
 	$.ajax({
 		type : "POST",
 		url : methodURL,
@@ -78,7 +78,7 @@ function uploadFormData() {
 	itemsInfo.append("name", $('#addItemForm input[name="name2"]').val());
 
 	$.ajax({
-		url : "/RentServiceSpring/addItemRequest",
+		url : "/CoreModule/addItemRequest",
 		data : itemsInfo,
 		dataType : 'text',
 		processData : false,
@@ -91,7 +91,7 @@ function uploadFormData() {
 }
 
 function restGet() {
-	var methodURL = "/RentServiceSpring/restGet";
+	var methodURL = "/CoreModule/restGet";
 	$.ajax({
 		type : "GET",
 		url : methodURL,

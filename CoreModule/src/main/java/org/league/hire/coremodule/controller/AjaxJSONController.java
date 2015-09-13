@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 
 @Controller
 public class AjaxJSONController {
@@ -40,12 +41,17 @@ public class AjaxJSONController {
 	@Autowired
 	CategoryManager catgManager;
 
-	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
-	public String home(Model model) {
-		return "home";
-	}
+//	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
+//	public String home(Model model) {
+//		return "home";
+//	}
 
-	@RequestMapping(value = "account", method = RequestMethod.GET)
+	@PostConstruct
+        public void init() {
+            System.out.println("AJAXJSON");
+        }
+        
+        @RequestMapping(value = "account", method = RequestMethod.GET)
 	public String account(Model model) {
 		User user = userManager.query().hasLogin("jack.sparrow").findInitialized(0, 1).get(0);
 
@@ -69,11 +75,11 @@ public class AjaxJSONController {
 		return "account";
 	}
 
-	@RequestMapping(value = "/home/{name}", method = RequestMethod.GET)
-	public String home2(Model model, @PathVariable Map<String, String> pathVars) {
-		String name = pathVars.get("name");
-		return "home";
-	}
+//	@RequestMapping(value = "/home/{name}", method = RequestMethod.GET)
+//	public String home2(Model model, @PathVariable Map<String, String> pathVars) {
+//		String name = pathVars.get("name");
+//		return "home";
+//	}
 
 	@RequestMapping("/getLogginedUserImage")
 	public void getLogginedUserImage(HttpServletResponse response, Principal principal, Model model) {
@@ -226,10 +232,10 @@ public class AjaxJSONController {
 	}
 
 	@RequestMapping(value = "/addItemRequest", method = RequestMethod.POST)
-	public @ResponseBody String addItemRequest(MultipartHttpServletRequest request, Principal principal) {
-		String result = "";
+	public String addItemRequest(MultipartHttpServletRequest request, Principal principal) {
+		String result = "redirect:/home.html";
 
-		User user = userManager.query().hasLogin("jack.sparrow").findInitialized(0, 1).get(0);
+		User user = userManager.query().hasLogin(principal.getName()).findInitialized(0, 1).get(0);
 
 		if (user != null) {
 			Item item = new Item();

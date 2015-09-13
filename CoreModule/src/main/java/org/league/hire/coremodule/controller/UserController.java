@@ -44,6 +44,11 @@ public class UserController {
         return new UserReview();
     }
     
+    @RequestMapping("/home")
+    public String home(Principal principal) {
+        return "redirect:/users/" + userService.findByLogin(principal.getName()).getId() + ".html";
+    }
+    
     @RequestMapping("/users")
     public String users(Model model) {
         model.addAttribute("users", userService.findAll());
@@ -51,15 +56,17 @@ public class UserController {
     }
 
     @RequestMapping("/users/{id}")
-    public String detail(Model model, @PathVariable int id) {
+    public String detail(Model model, @PathVariable int id, Principal principal) {
         User user = userService.findOne(id);
         List<UserReview> userReviews = reviewAndRatingService.findAllByUser(user);
         List<Integer> userReviewsRatings = reviewAndRatingService.findRatingsByUserReviews(userReviews);
         int userRating = reviewAndRatingService.findUserRating(user);
+        boolean isOwner = id == userService.findByLogin(principal.getName()).getId() ? true : false;
         model.addAttribute("user", user);
         model.addAttribute("userReviews", userReviews);
         model.addAttribute("userReviewsRatings", userReviewsRatings);
         model.addAttribute("userRating", userRating);
+        model.addAttribute("isOwner", isOwner);
         return "user-detail";
     }
 

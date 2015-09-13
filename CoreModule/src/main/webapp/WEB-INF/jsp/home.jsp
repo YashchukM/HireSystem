@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 
 <head>
@@ -10,7 +10,7 @@
 </head>
 
 
-<body>
+<body>--%>
 	<form id="addItemForm" method="post" enctype="multipart/form-data">
 	    <input type="text" id="name2" name="name2" />
 	    <input type="text" name="to" />
@@ -25,9 +25,9 @@
     	<input type="button" value="upload" onclick="uploadFormData()" />
 	</form>
 	
-	<img src="getImage/222"/>
+<!--	<img src="getImage/222"/>-->
 	
-	<input type="button" value="GET!" onclick="restGet()" />
+<!--	<input type="button" value="GET!" onclick="restGet()" />-->
 	
 	<span id="jsonMessage"></span>
 	<span id="jsonGetMessage"></span>
@@ -35,6 +35,7 @@
 		
 	<a href="account">Account</a>
 	
-</body>
+<%--</body>
 
 </html>
+--%>

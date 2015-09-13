@@ -50,4 +50,10 @@
         <put-attribute name="current" value="login" />
     </definition>
 
+    <definition name="home" extends="common">
+        <put-attribute name="title" value="Home" />
+        <put-attribute name="body" value="/WEB-INF/jsp/home.jsp" />
+        <put-attribute name="current" value="home" />
+    </definition>
+
 </tiles-definitions>
