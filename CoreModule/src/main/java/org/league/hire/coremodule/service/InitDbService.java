@@ -85,12 +85,12 @@ public class InitDbService {
         adminReview.setDate(new Date());
         userReviewManager.save(new UserReview(adminReview, user));
     
-        ItemDetails adminItemDetails = new ItemDetails();
-        Item adminItem = new Item();
-        adminItem.setName("adminItem");
-        adminItemDetails.setItem(adminItem);
-        adminItemDetails.setOwner(userAdmin);
-        itemDetailsManager.save(adminItemDetails);
+//        ItemDetails adminItemDetails = new ItemDetails();
+//        Item adminItem = new Item();
+//        adminItem.setName("adminItem");
+//        adminItemDetails.setItem(adminItem);
+//        adminItemDetails.setOwner(userAdmin);
+//        itemDetailsManager.save(adminItemDetails);
     }
 
 }

@@ -59,10 +59,12 @@ public class AjaxJSONController {
     @RequestMapping("/getUsersItemImage/{userId}/{itemId}")
     public void getUsersItemImage(HttpServletResponse response, @PathVariable("userId") final String userId,
             @PathVariable("itemId") final String itemId) {
+        
+        System.err.println("watwat");
         response.setContentType("image/jpeg");
         try {
-            User user = userManager.getById(userId);
-            Item item = itemManager.getById(itemId);
+            User user = userManager.getById(Integer.parseInt(userId));
+            Item item = itemManager.getById(Integer.parseInt(itemId));
 
             if (user != null && item != null && item.getItemDetails().getOwner().getId() == Integer.parseInt(userId)) {
                 byte[] image = item.getMainImage();
@@ -238,8 +240,8 @@ public class AjaxJSONController {
     }
 
     @RequestMapping(value = "/addItemRequest", headers = "content-type=multipart/*", method = RequestMethod.POST)
-    public String addItemRequest(MultipartHttpServletRequest request, Principal principal) {
-        String result = "";
+    public void addItemRequest(MultipartHttpServletRequest request, Principal principal) {
+//        String result = "";
 
         User user = userManager.query().hasLogin(principal.getName()).findInitialized(0, 1).get(0);
 
@@ -273,14 +275,14 @@ public class AjaxJSONController {
 
             try {
                 itemDetManager.save(itemDet);
-                solrService.put(itemDet.getItem().getId(), item.getName(), principal.getName(), "category");
+//                solrService.put(itemDet.getItem().getId(), item.getName(), principal.getName(), "category");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
 
         }
-        return result;
+//        return result;
     }
 
     @RequestMapping(value = "/changeItemsInfoRequest", method = RequestMethod.POST)

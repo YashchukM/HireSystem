@@ -35,6 +35,15 @@
                 right: 0;
             }
         </style>
+        <script>
+
+            $(document).ready(function () {
+                document.getElementById("file2").onchange = function () {
+                    document.getElementById("uploadFile").value = this.files[0].name;
+                };
+            });
+
+        </script>
         <form id="addItemForm" method="post" enctype="multipart/form-data">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input type="text" id="name2" name="name2" class="mdl-textfield__input" required/>

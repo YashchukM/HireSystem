@@ -36,13 +36,13 @@ public class SolrService {
 
     @PostConstruct
     public void init() {
-        try {
-            solrUrl = SolrUtility.getSolrUrl("http://api.solrhq.com/txt/10e243d3c8a5bd5cfda7face16e76b83/start-session/HireSystem/");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        server = (HttpSolrServer) SolrServerFactory.getInstance().createServer(solrUrl);
-        configureSolr(server);
+//        try {
+//            solrUrl = SolrUtility.getSolrUrl("http://api.solrhq.com/txt/10e243d3c8a5bd5cfda7face16e76b83/start-session/HireSystem/");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        server = (HttpSolrServer) SolrServerFactory.getInstance().createServer(solrUrl);
+//        configureSolr(server);
     }
 
     /**

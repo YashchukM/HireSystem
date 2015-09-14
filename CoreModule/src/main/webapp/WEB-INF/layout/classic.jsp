@@ -137,13 +137,6 @@
                     }
                 });
             }
-
-            $(document).ready(function () {
-                document.getElementById("file2").onchange = function () {
-                    document.getElementById("uploadFile").value = this.files[0].name;
-                };
-            });
-
         </script>
         <title><tiles:getAsString name="title" /></title>
     </head>

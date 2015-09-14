@@ -14,11 +14,13 @@
         <div><h4>Action successful!</h4></div>
     </c:if>
 
-    <img src="/getUsersItemImage/${item.itemDetails.owner.id}/${item.id}"/>
     <h5>Name: ${item.name}</h5>
     ${item.itemDetails.owner.login}
     <h5>Rating: ${itemRating}</h5>
     <h5>Vote:<a href="<spring:url value="/items/${item.id}/voteItem.html" />">vote</a></h5>
+    <center>
+        <img src="/CoreModule/getUsersItemImage/${item.itemDetails.owner.id}/${item.id}.html" style="max-width:100%;max-height:100%;" />
+    </center>
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
             <tr>
