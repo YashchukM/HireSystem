@@ -35,6 +35,7 @@ public class Item {
     @Cascade(CascadeType.ALL)
     protected ItemDetails itemDetails;
 
+    @Lob
     @Column(name = "MAIN_IMAGE")
     protected byte[] mainImage;
 

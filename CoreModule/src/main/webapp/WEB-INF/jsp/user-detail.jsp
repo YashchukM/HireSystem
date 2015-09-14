@@ -15,138 +15,212 @@
     </c:if>
 
     <c:if test="${isOwner eq true}">
+        <style type="text/css">
+            .mdl-button--file input {
+                cursor: pointer;
+                height: 100%;
+                right: 0;
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                width: 300px;
+                z-index: 4;
+            }
+
+            .mdl-textfield--file .mdl-textfield__input {
+                box-sizing: border-box;
+                width: calc(100% - 32px);
+            }
+            .mdl-textfield--file .mdl-button--file {
+                right: 0;
+            }
+        </style>
         <script>
             function changeUsersInfoOld() {
-	var methodURL = "/CoreModule/changeUsersInfoRequest";
-	$.ajax({
-		type : "POST",
-		url : methodURL,
-		data : $("#usersInfoForm").serialize(),
-		async : true,
-		success : function(data) {
-			$("#jsonMessage").text(data);
-		},
-		error : function(e) {
+                var methodURL = "/CoreModule/changeUsersInfoRequest";
+                $.ajax({
+                    type: "POST",
+                    url: methodURL,
+                    data: $("#usersInfoForm").serialize(),
+                    async: true,
+                    success: function (data) {
+                        $("#jsonMessage").text(data);
+                    },
+                    error: function (e) {
 
-		}
-	});
-}
+                    }
+                });
+            }
 
-function changeUsersInfo() {
-	$('#result').html('');
-	var usersInfo = new FormData();	
-	usersInfo.append("name", $('#usersInfoForm input[name="name"]').val());
-	usersInfo.append("surname", $('#usersInfoForm input[name="surname"]').val());
-	usersInfo.append("bdate", $('#usersInfoForm input[name="bdate"]').val());
-	usersInfo.append("email", $('#usersInfoForm input[name="email"]').val());
-	usersInfo.append("phone", $('#usersInfoForm input[name="phone"]').val());
-	usersInfo.append("file", avatar.files[0]);
+            function changeUsersInfo() {
+                $('#result').html('');
+                var usersInfo = new FormData();
+                usersInfo.append("name", $('#usersInfoForm input[name="name"]').val());
+                usersInfo.append("surname", $('#usersInfoForm input[name="surname"]').val());
+                usersInfo.append("bdate", $('#usersInfoForm input[name="bdate"]').val());
+                usersInfo.append("email", $('#usersInfoForm input[name="email"]').val());
+                usersInfo.append("phone", $('#usersInfoForm input[name="phone"]').val());
+                usersInfo.append("file", avatar.files[0]);
 
-	$.ajax({
-		url : "/CoreModule/changeUsersInfoRequest",
-		data : usersInfo,
-		dataType : 'text',
-		processData : false,
-		contentType : false,
-		type : 'POST',
-		success : function(data) {
-			$('#result').html(data);
-		}
-	});
-}
+                $.ajax({
+                    url: "/CoreModule/changeUsersInfoRequest",
+                    data: usersInfo,
+                    dataType: 'text',
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+                        $('#result').html(data);
+                    }
+                });
+            }
 
-function changeItemsInfo() {
-	var methodURL = "/CoreModule/changeItemsInfoRequest";
-	$.ajax({
-		type : "POST",
-		url : methodURL,
-		data : $("#goodsInfoForm").serialize(),
-		async : true,
-		success : function(data) {
-			$("#jsonMessage").text(data);
-		},
-		error : function(e) {
+            function changeItemsInfo() {
+                var methodURL = "/CoreModule/changeItemsInfoRequest";
+                $.ajax({
+                    type: "POST",
+                    url: methodURL,
+                    data: $("#goodsInfoForm").serialize(),
+                    async: true,
+                    success: function (data) {
+                        $("#jsonMessage").text(data);
+                    },
+                    error: function (e) {
 
-		}
-	});
-}
+                    }
+                });
+            }
 
-function sendImage() {
-	var methodURL = "/CoreModule/image";
-	$.ajax({
-		type : "POST",
-		url : methodURL,
-		data : $("#imageForm").serialize(),
-		async : true,
-		success : function(data) {
-			$("#imageMess").text(data);
-		},
-		error : function(e) {
+            function sendImage() {
+                var methodURL = "/CoreModule/image";
+                $.ajax({
+                    type: "POST",
+                    url: methodURL,
+                    data: $("#imageForm").serialize(),
+                    async: true,
+                    success: function (data) {
+                        $("#imageMess").text(data);
+                    },
+                    error: function (e) {
 
-		}
-	});
-}
+                    }
+                });
+            }
 
 //using FormData() object
-function uploadFormData() {
-	$('#result').html('');
+            function uploadFormData() {
+                $('#result').html('');
 
-	var itemsInfo = new FormData();
-	itemsInfo.append("file", file2.files[0]);
-	itemsInfo.append("name", $('#addItemForm input[name="name2"]').val());
+                var itemsInfo = new FormData();
+                itemsInfo.append("file", file2.files[0]);
+                itemsInfo.append("name", $('#addItemForm input[name="name2"]').val());
+                itemsInfo.append("category", $('#addItemForm input[name="category"]').val());
+                itemsInfo.append("price", $('#addItemForm input[name="price"]').val());
+                itemsInfo.append("description", $('#addItemForm input[name="description"]').val());
+                itemsInfo.append("minHireTime", $('#addItemForm input[name="minHireTime"]').val());
+                itemsInfo.append("maxHireTime", $('#addItemForm input[name="maxHireTime"]').val());
+                //console.log($('#addItemForm input[name="description"]').val());
 
-	$.ajax({
-		url : "/CoreModule  /addItemRequest",
-		data : itemsInfo,
-		dataType : 'text',
-		processData : false,
-		contentType : false,
-		type : 'POST',
-		success : function(data) {
-			$('#result').html(data);
-		}
-	});
-}
+                $.ajax({
+                    url: "/CoreModule/addItemRequest.html",
+                    data: itemsInfo,
+                    dataType: 'text',
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+//                        $('#result').html(data);
+                        location.reload();
+                    },
+                    error: function (data) {
+                        location.reload();
+                    }
+                });
+            }
 
-function restGet() {
-	var methodURL = "/CoreModule/restGet";
-	$.ajax({
-		type : "GET",
-		url : methodURL,
-		data : "json",
-		success : function(data) {
-			$("#jsonGetMessage").text(data);
-		},
-		error : function(e) {
+            function restGet() {
+                var methodURL = "/CoreModule/restGet";
+                $.ajax({
+                    type: "GET",
+                    url: methodURL,
+                    data: "json",
+                    success: function (data) {
+                        $("#jsonGetMessage").text(data);
+                    },
+                    error: function (e) {
 
-		}
-	});
-}
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                document.getElementById("file2").onchange = function () {
+                    document.getElementById("uploadFile").value = this.files[0].name;
+                };
+            });
 
         </script>
         <form id="addItemForm" method="post" enctype="multipart/form-data">
-            <input type="text" id="name2" name="name2" />
-            <input type="text" name="to" />
-            <input type="date" name="bday" value="1995-08-23" >
-            <input type="hidden" name="h" value="010" />
-            <input type="file" name="file2" id="file2"/>
-            <input type="button" value="Do it!" onclick="uploadFormData()" />
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input type="text" id="name2" name="name2" class="mdl-textfield__input" required/>
+                <label class="mdl-textfield__label" for="name2">Name:</label>
+            </div>
+            <!--            <br>-->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input type="text" name="category" value="category" class="mdl-textfield__input" required/>
+                <label class="mdl-textfield__label" for="category">Category:</label>
+            </div>
+            <br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input type="text" name="price" value="123" class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" required/>
+                <label class="mdl-textfield__label" for="price">Price:</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <!--            <br>-->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input type="text" name="description" value="description" class="mdl-textfield__input" required/>
+                <label class="mdl-textfield__label" for="description">Description:</label>
+            </div>
+            <br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input type="text" name="minHireTime" value="123" class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" required/>
+                <label class="mdl-textfield__label" for="minHireTime">minHireTime:</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <!--            <br>-->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input type="text" name="maxHireTime" value="222" class="mdl-textfield__input" pattern="-?[0-9]*(\.[0-9]+)?" required/>
+                <label class="mdl-textfield__label" for="maxHireTime">maxHireTime:</label>
+                <span class="mdl-textfield__error">Input is not a number!</span>
+            </div>
+            <!--            <input type="date" name="bday" value="1995-08-23" >
+                        <input type="hidden" name="h" value="010" />-->
+            <br>            
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+                <input class="mdl-textfield__input" placeholder="File" type="text" id="uploadFile" readonly/>
+                <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+                    <i class="material-icons">attach_file</i>
+                    <input type="file" name="file2" id="file2"/>
+                </div>
+            </div>
+            <br>
+            <input type="button" value="Add item" onclick="uploadFormData()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" />
         </form>
 
-        <form id="imageForm" method="post" enctype="multipart/form-data">
+        <%--<form id="imageForm" method="post" enctype="multipart/form-data">
             <input type="file" name="file3" id="file3"/>
             <input type="button" value="upload" onclick="uploadFormData()" />
-        </form>
+        </form>--%>
 
         <%--<img src="getImage/222"/>--%>
 
-        <input type="button" value="GET!" onclick="restGet()" />
+        <%--<input type="button" value="GET!" onclick="restGet()" />
 
         <span id="jsonMessage"></span>
         <span id="jsonGetMessage"></span>
-        <div id="result"></div>
+        <div id="result"></div>--%>
 
-<!--        <a href="account">Account</a>-->
+        <!--        <a href="account">Account</a>-->
     </c:if>
 
     <h5>Login: ${user.login}</h5>
