@@ -14,6 +14,7 @@
         <div><h4>Action successful!</h4></div>
     </c:if>
 
+    <img src="/getUsersItemImage/{userId}/{itemId}"/>
     <h5>Name: ${item.name}</h5>
     ${item.itemDetails.owner.login}
     <h5>Rating: ${itemRating}</h5>
