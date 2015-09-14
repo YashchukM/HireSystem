@@ -33,7 +33,6 @@ public class SearchController {
     @RequestMapping(value = "/search", method = RequestMethod.GET, params={"search"})
     public String addItemRequest(@RequestParam(value = "search") String search, Model model, Principal principal) {
         model.addAttribute("items", solrService.findByOwner(search, 0, 10));
-        System.out.println("ebat'");
         return "items";
     }
 }

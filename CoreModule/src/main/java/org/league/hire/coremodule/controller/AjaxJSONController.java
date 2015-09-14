@@ -134,24 +134,6 @@ public class AjaxJSONController {
         }
     }
 
-    @RequestMapping("/getUsersItemImage/{userId}/{itemId}")
-    public void getUsersItemImage(HttpServletResponse response, @PathVariable("userId") final String userId,
-            @PathVariable("itemId") final String itemId) {
-        response.setContentType("image/jpeg");
-        try {
-            User user = userManager.getById(userId);
-            Item item = itemManager.getById(itemId);
-
-            if (user != null && item != null && item.getItemDetails().getOwner().getId() == Integer.parseInt(userId)) {
-                byte[] image = item.getMainImage();
-                response.getOutputStream().write(image);
-                response.getOutputStream().flush();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @RequestMapping("/uploadUserImage")
     public @ResponseBody
     String uploadUserImage(MultipartHttpServletRequest request, Principal principal) {
