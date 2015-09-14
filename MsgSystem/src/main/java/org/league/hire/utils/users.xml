@@ -1,0 +1,28 @@
+<data>
+<users>
+<user>
+<id>100</id>
+<name>Admin User</name>
+<email>admin@plebs.ora</email>
+<login>admin</login>
+<password>admin</password>
+<type>1</type>
+</user>
+<user>
+<id>101</id>
+<name>Dima Uvarov</name>
+<email>osama@plebs.ora</email>
+<login>Osama</login>
+<password>osama</password>
+<type>0</type>
+</user>
+<user>
+<id>102</id>
+<name>Myhailo Yashuk</name>
+<email>fahmy@plebs.ora</email>
+<login>Fahmy</login>
+<password>fahmy</password>
+<type>0</type>
+</user>
+<user>
+

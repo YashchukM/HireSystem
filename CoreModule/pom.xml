@@ -9,7 +9,7 @@
 
     <artifactId>CoreModule</artifactId>
 
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>CoreModule</name>
     
