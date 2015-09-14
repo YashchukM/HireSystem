@@ -19,5 +19,6 @@ public interface HireManager extends GenericManager<Hire> {
         public HireQuery hasHirer(User hirer);
         public HireQuery hasOwner(User owner);
         public HireQuery hasDateBetween(Date lo, Date hi);
+        public HireQuery hasStatus(int status);
     }
 }

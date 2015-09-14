@@ -35,4 +35,9 @@ public class HireDAOImpl extends GenericDAOImpl<Hire> implements HireDAO {
     public Criterion hasStartDateBetween(Date lo, Date hi) {
         return Restrictions.between("startDate", lo, hi);
     }
+
+    @Override
+    public Criterion hasStatus(int status) {
+        return Restrictions.eq("status", status);
+    }
 }

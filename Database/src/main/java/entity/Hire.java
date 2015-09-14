@@ -28,6 +28,9 @@ public class Hire {
     @Column(name = "END_DATE")
     protected Date endDate;
 
+    @Column(name = "STATUS")
+    protected int status;
+
     public Hire() {
     }
 
@@ -37,6 +40,15 @@ public class Hire {
         this.hirer = hirer;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public Hire(Item item, User owner, User hirer, Date startDate, Date endDate, int status) {
+        this.item = item;
+        this.owner = owner;
+        this.hirer = hirer;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
     }
 
     public int getId() {
@@ -85,5 +97,13 @@ public class Hire {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

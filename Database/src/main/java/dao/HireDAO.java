@@ -16,4 +16,5 @@ public interface HireDAO extends GenericDAO<Hire> {
     public Criterion hasHirer(User hirer);
     public Criterion hasOwner(User owner);
     public Criterion hasStartDateBetween(Date lo, Date hi);
+    public Criterion hasStatus(int status);
 }

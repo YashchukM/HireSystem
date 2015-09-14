@@ -62,5 +62,11 @@ public class HireManagerImpl extends GenericManagerImpl<Hire>
             addCriterion(((HireDAO) dao).hasStartDateBetween(lo, hi));
             return this;
         }
+
+        @Override
+        public HireQuery hasStatus(int status) {
+            addCriterion(((HireDAO) dao).hasStatus(status));
+            return this;
+        }
     }
 }
